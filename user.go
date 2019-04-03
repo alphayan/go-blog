@@ -6,7 +6,7 @@ type User struct {
 	ID       int    `json:"id" gorm:"id;AUTO_INCREMENT" form:"-"`                     //主键
 	Username string `json:"username" gorm:"username;unique;not null" form:"username"` //用户名
 	Password string `json:"password" gorm:"password" form:"password"`                 //密码
-	Status   int    `json:"status" gorm:"status default:0" form:"status"`             //账号状态 0未审核 1已审核 2已注销
+	Status   int    `json:"status" gorm:"status default:0" form:"-"`                  //账号状态 0未审核 1已审核 2已注销
 	Model
 }
 
