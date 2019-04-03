@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>register</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center; /*定义body的元素垂直居中*/
+            justify-content: center; /*定义body的里的元素水平居中*/
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div align="center">
+    <form action="/login" method="post" id="form1">
+        Username: <input type="text" name="username"/><br/>
+        Password: <input type="text" name="password"/><br/>
+        <p><input type="button" value="登录" onclick="login()"></p>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript">
+    function login() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/login",//url
+            data: $('#form1').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.error == 0) {
+                    alert("SUCCESS");
+                }
+                ;
+            },
+            error: function (result) {
+                alert("异常!");
+            }
+        });
+    }
+</script>
+</html>
